@@ -1,0 +1,41 @@
+﻿<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">Mitto App</p>
+</div>
+<div class="messages">  
+    jsony   
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function()
+        {
+            //$.getJSON('/api/MessagesApi/GetSendSMS', function (result)
+            //    {
+            //    $(result).each(function (i, item)
+            //        {
+            //            $('.messages').append('<p>' + item.Text + '</p>');                    
+            //        });
+            //    });
+
+            $.ajax({
+                type: "GET",
+                url: "/api/MessagesApi/GetSendSMS",
+                dataType: "xml",
+                success: function (xml) {
+
+                    $(xml).find('Messages').each(function () {
+                        var item = $(this).find('Text').text();                        
+                        $('.messages').append('<p>' + item + '</p>');
+                    });
+
+                },
+                error: function () {
+                    alert("An error occurred while processing XML file.");
+                }
+            });
+        });
+    </script>
+}
+
+
