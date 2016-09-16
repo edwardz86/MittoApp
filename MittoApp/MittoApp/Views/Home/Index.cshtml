@@ -2,21 +2,20 @@
     <h1>ASP.NET</h1>
     <p class="lead">Mitto App</p>
 </div>
-<div class="messages">  
-    jsony   
+<div class="messages">    
 </div>
 
 @section scripts{
     <script type="text/javascript">
         $(function()
         {
-            $.getJSON('/countries.json', function (result)
-            {                
-                $(result).each(function (i, item)
-                    {
-                        $('.messages').append('<p>' + item.name + '</p>');                    
-                    });
-                });
+            //$.getJSON('/countries.json', function (result)
+            //{                
+            //    $(result).each(function (i, item)
+            //        {
+            //            $('.messages').append('<p>' + item.name + '</p>');                    
+            //        });
+            //    });
 
             //$.ajax({
             //    type: "GET",
@@ -34,6 +33,20 @@
             //        alert("An error occurred while processing XML file.");
             //    }
             //});
+        });
+        $(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/sms/send.json?from=The+Sender&to=%2B4917421293388&text=Hello+World",                                  
+                success: function (result) {
+                    alert(result)
+                },
+                error: function () {
+                    alert("An error occurred while processing XML file.");
+                }
+            });
+
         });
     </script>
 }
