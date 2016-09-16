@@ -10,30 +10,30 @@
     <script type="text/javascript">
         $(function()
         {
-            //$.getJSON('/api/MessagesApi/GetSendSMS', function (result)
-            //    {
-            //    $(result).each(function (i, item)
-            //        {
-            //            $('.messages').append('<p>' + item.Text + '</p>');                    
-            //        });
-            //    });
-
-            $.ajax({
-                type: "GET",
-                url: "/api/MessagesApi/GetSendSMS",
-                dataType: "xml",
-                success: function (xml) {
-
-                    $(xml).find('Messages').each(function () {
-                        var item = $(this).find('Text').text();                        
-                        $('.messages').append('<p>' + item + '</p>');
+            $.getJSON('/countries.json', function (result)
+            {                
+                $(result).each(function (i, item)
+                    {
+                        $('.messages').append('<p>' + item.name + '</p>');                    
                     });
+                });
 
-                },
-                error: function () {
-                    alert("An error occurred while processing XML file.");
-                }
-            });
+            //$.ajax({
+            //    type: "GET",
+            //    url: "/countries.xml",
+            //    dataType: "xml",
+            //    success: function (xml) {
+
+            //        $(xml).find('CountryDTO').each(function () {
+            //            var item = $(this).find('name').text();
+            //            $('.messages').append('<p>' + item + '</p>');
+            //        });
+
+            //    },
+            //    error: function () {
+            //        alert("An error occurred while processing XML file.");
+            //    }
+            //});
         });
     </script>
 }

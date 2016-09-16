@@ -30,8 +30,13 @@ namespace MittoApp.Migrations
             );
 
             context.Messages.AddOrUpdate(
-                new Messages { Id = Guid.NewGuid(), Country = Germany, Sender = "777666444", Receiver = "111222333", Text = "test", State = 0, SendDate = DateTime.Now}                
-            );
+                new Messages { Id = Guid.NewGuid(), Country = Germany, Sender = "111222333", Receiver = "111222333", Text = "msg1", State = 0, SendDate = DateTime.Now},
+                new Messages { Id = Guid.NewGuid(), Country = Germany, Sender = "111222333", Receiver = "111222333", Text = "msg2", State = 0, SendDate = DateTime.Now },
+                new Messages { Id = Guid.NewGuid(), Country = Germany, Sender = "111222333", Receiver = "111222333", Text = "msg3", State = 0, SendDate = DateTime.Now },
+                new Messages { Id = Guid.NewGuid(), Country = Austria, Sender = "111222333", Receiver = "111222333", Text = "msg4", State = 0, SendDate = DateTime.Now },
+                new Messages { Id = Guid.NewGuid(), Country = Austria, Sender = "111222333", Receiver = "111222333", Text = "msg5", State = 0, SendDate = DateTime.Now },
+                new Messages { Id = Guid.NewGuid(), Country = Poland, Sender = "111222333", Receiver = "111222333", Text = "msg6", State = 0, SendDate = DateTime.Now },
+                new Messages { Id = Guid.NewGuid(), Country = Poland, Sender = "111222333", Receiver = "111222333", Text = "msg7", State = 0, SendDate = DateTime.Now }                );
             
             
         }
