@@ -220,6 +220,8 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DTO\CountryDTO.cs" />
+    <Compile Include="DTO\SendedMessage.cs" />
+    <Compile Include="DTO\SendedMessages.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

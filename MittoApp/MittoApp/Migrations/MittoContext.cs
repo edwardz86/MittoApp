@@ -3,7 +3,7 @@ namespace MittoApp.Migrations
     using System;
     using System.Data.Entity;
     using System.Linq;
-
+    using static Utils.Enums;
     [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class MittoContext : DbContext
     {
@@ -44,7 +44,7 @@ namespace MittoApp.Migrations
         public string Sender { get; set; }
         public string Receiver { get; set; }
         public string Text { get; set; }
-        public int State { get; set; }
+        public State State { get; set; }
         public DateTime SendDate { get; set; }
     }
 }

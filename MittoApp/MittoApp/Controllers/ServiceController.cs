@@ -57,6 +57,36 @@ namespace MittoApp.Controllers
             return State.Success;
         }
 
+        [HttpGet]
+        [Route("sms/sent{x:regex(.[A-Z])}/")]
+        public SendedMessagesDTO GetSendSMS(int skip, int take, DateTime dateTimeFrom, DateTime dateTimeTo)
+        {
+            // sms/sent{x}?skip=1&take=5&dateTimeFrom=2016-09-16T00:00:00.00&dateTimeTo=2016-09-16T22:00:00.00
+            SendedMessagesDTO result = new SendedMessagesDTO();
+
+            IQueryable<SendedMessageDTO> sendedMessagesQuery = from c in db.Countries
+                            join m in db.Messages
+                            on c.Id equals m.Country.Id
+                            where m.SendDate >= dateTimeFrom && m.SendDate <= dateTimeTo
+                            select new SendedMessageDTO()
+                            {
+                                SendDate = m.SendDate,
+                                MobileCountryCode = c.MobileCountryCode,
+                                Sender = m.Sender,
+                                Receiver = m.Receiver,
+                                PricePerSMS = c.PricePerSMS,
+                                State = m.State
+                            };
+
+            var sendedMessages = sendedMessagesQuery.ToList().Skip(skip).Take(take);
+
+            result.Items = sendedMessages;
+            result.TotalCount = sendedMessages.Count();
+            
+            return result;
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

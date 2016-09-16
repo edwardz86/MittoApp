@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MittoApp.DTO
 {
-    [DataContract]
+    [DataContract(Name = "countries")]
     public class CountryDTO
     {
         [DataMember(Name = "mcc")]
