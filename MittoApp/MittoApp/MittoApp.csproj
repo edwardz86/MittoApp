@@ -222,6 +222,7 @@
     <Compile Include="DTO\CountryDTO.cs" />
     <Compile Include="DTO\SendedMessage.cs" />
     <Compile Include="DTO\SendedMessages.cs" />
+    <Compile Include="DTO\StatisticDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

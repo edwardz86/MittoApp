@@ -87,6 +87,43 @@ namespace MittoApp.Controllers
 
         }
 
+        [HttpGet]
+        [Route("statistics{x:regex(.[A-Z])}")]
+        public IEnumerable<StatisticDTO> GetStatistics()
+        {
+            // DateTime dateFrom, DateTime dateTo, List<string> mccList
+
+            List<string> items = new List<string> { "48", "43" };
+
+            var statisticQuery =
+                from c in db.Countries
+                join m in db.Messages
+                on c.Id equals m.Country.Id
+                //where m.SendDate >= new DateTime(2016, 9, 15) && m.SendDate <= new DateTime(2016, 9, 15)
+                where items.Contains(c.CountryCode)
+                group new { c, m } by new { m.SendDate, c.CountryCode, c.PricePerSMS, c.MobileCountryCode } into result
+                let sendDate = result.Key.SendDate
+                let countryCode = result.Key.CountryCode       
+                let mobileCountryCode = result.Key.MobileCountryCode         
+                select new StatisticDTO
+                {
+                    CreatedDate = sendDate,
+                    MobileCountryCode = countryCode,
+                    Count = result.Count(),
+                    PricePerSMS = db.Countries
+                    .Where(x => x.MobileCountryCode == mobileCountryCode).Select(x => x.PricePerSMS).FirstOrDefault(),
+                    TotalPrice = result.Sum(result => result.c.PricePerSMS) 
+                };
+
+
+            //if (useAge)
+            //    query = query.Where(u => u.Age > age);
+            
+            List<StatisticDTO> statistics = statisticQuery.ToList();
+            return statistics;
+    
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

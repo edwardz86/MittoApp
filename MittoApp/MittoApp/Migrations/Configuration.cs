@@ -29,6 +29,8 @@ namespace MittoApp.Migrations
               Germany, Austria, Poland
             );
 
+            context.SaveChanges();
+
             context.Messages.AddOrUpdate(
                 new Messages { Id = Guid.NewGuid(), Country = Germany, Sender = "111222333", Receiver = "111222333", Text = "msg1", State = 0, SendDate = DateTime.Now},
                 new Messages { Id = Guid.NewGuid(), Country = Germany, Sender = "111222333", Receiver = "111222333", Text = "msg2", State = 0, SendDate = DateTime.Now },
@@ -37,8 +39,8 @@ namespace MittoApp.Migrations
                 new Messages { Id = Guid.NewGuid(), Country = Austria, Sender = "111222333", Receiver = "111222333", Text = "msg5", State = 0, SendDate = DateTime.Now },
                 new Messages { Id = Guid.NewGuid(), Country = Poland, Sender = "111222333", Receiver = "111222333", Text = "msg6", State = 0, SendDate = DateTime.Now },
                 new Messages { Id = Guid.NewGuid(), Country = Poland, Sender = "111222333", Receiver = "111222333", Text = "msg7", State = 0, SendDate = DateTime.Now }                );
-            
-            
+
+            context.SaveChanges();
         }
     }
 }

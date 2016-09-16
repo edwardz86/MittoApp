@@ -4,7 +4,7 @@ namespace MittoApp.Migrations
     using System.Data.Entity;
     using System.Linq;
     using static Utils.Enums;
-    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
+    //[DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class MittoContext : DbContext
     {
         // Your context has been configured to use a 'MittoContext' connection string from your application's 
